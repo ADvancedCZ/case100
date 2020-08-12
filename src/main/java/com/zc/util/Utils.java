@@ -14,8 +14,8 @@ public class Utils {
         try {
             p.load(clazz.getResourceAsStream(fileName));
             p.forEach((k,v)->{
-            log.info("{}={}",k,v);
-                    System.setProperty(k.toString(),v.toString());
+                log.info("{}={}",k,v);
+                System.setProperty(k.toString(),v.toString());
             });
         } catch (IOException e) {
             throw new RuntimeException(e);
