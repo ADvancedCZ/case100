@@ -1,12 +1,13 @@
-package com.zc.case01.concurrent01;
+package com.zc.test;
+
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-public class CommonMistakesApplication {
+public class TestThreadApplication {
     public static void main(String[] args) {
-        SpringApplication.run(CommonMistakesApplication.class,args);
+        SpringApplication.run(TestThreadApplication.class, args);
     }
 }
