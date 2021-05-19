@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -22,17 +21,12 @@ public class TestController {
     public int right(){
         //track completed task number
         AtomicInteger atomicInteger = new AtomicInteger(0);
-        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(
+        ThreadPoolExecutor threadPoolExecutor = new ExtremeThreadPoolExecutor(
                 2,
                 5,
                 5,
                 TimeUnit.SECONDS,
-                new ArrayBlockingQueue<Runnable>(10){
-                    @Override
-                    public boolean offer(Runnable runnable) {
-                        return false;
-                    }
-                },
+                new ExtremeArrayBlockingQueue<>(10),
                 new ThreadFactoryBuilder().setNameFormat("case03-threadpool-%d").build(),
                 new ThreadPoolExecutor.AbortPolicy());
         threadPoolExecutor.prestartAllCoreThreads();
